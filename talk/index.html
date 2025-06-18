@@ -1,0 +1,692 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Model Context Protocol - Python User Group</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/theme/black.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.8.0/styles/atom-one-dark.min.css">
+    <style>
+        .reveal .slides section {
+            text-align: left;
+            padding: 20px !important;
+            box-sizing: border-box;
+            max-height: 85vh !important;
+            overflow-y: auto !important;
+            font-size: 0.85em !important;
+        }
+        .reveal .slides {
+            top: 5vh !important;
+            left: 50% !important;
+            width: 95vw !important;
+            height: 85vh !important;
+            transform: translateX(-50%) !important;
+        }
+        .reveal h1, .reveal h2, .reveal h3 {
+            text-align: center;
+            margin-bottom: 15px !important;
+        }
+        .reveal h1 {
+            font-size: 2.5em !important;
+        }
+        .reveal h2 {
+            font-size: 2em !important;
+        }
+        .reveal h3 {
+            font-size: 1.5em !important;
+        }
+        .reveal h4 {
+            font-size: 1.2em !important;
+            margin-bottom: 10px !important;
+        }
+        .reveal p, .reveal li {
+            font-size: 1em !important;
+            line-height: 1.4 !important;
+            margin-bottom: 8px !important;
+        }
+        .reveal ul, .reveal ol {
+            margin-bottom: 10px !important;
+        }
+        .center {
+            text-align: center !important;
+        }
+        .big-code {
+            font-size: 0.7em !important;
+        }
+        .architecture-diagram {
+            background: #2b2b2b;
+            padding: 15px;
+            border-radius: 8px;
+            font-family: monospace;
+            color: #61dafb;
+            margin: 15px 0;
+            font-size: 0.75em;
+        }
+        .capabilities {
+            display: flex;
+            justify-content: space-around;
+            align-items: flex-start;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        .capability {
+            text-align: center;
+            flex: 1;
+            margin: 0 5px;
+            min-width: 160px;
+        }
+        .capability-icon {
+            font-size: 2.2em;
+            margin-bottom: 8px;
+        }
+        .capability ul {
+            font-size: 0.8em !important;
+        }
+        .problem-list {
+            font-size: 1em;
+            line-height: 1.4;
+        }
+        .timeline {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .before-after {
+            display: flex;
+            justify-content: space-between;
+            margin: 15px 0;
+            flex-wrap: wrap;
+        }
+        .before, .after {
+            flex: 1;
+            padding: 15px;
+            margin: 0 5px;
+            border-radius: 8px;
+            min-width: 200px;
+            font-size: 0.85em;
+        }
+        .before {
+            background: #e74c3c;
+        }
+        .after {
+            background: #27ae60;
+        }
+        .getting-started {
+            background: #1976d2;
+            padding: 15px;
+            border-radius: 8px;
+            margin: 15px 0;
+        }
+        .resources-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 15px;
+            margin: 20px 0;
+            text-align: center;
+        }
+        .resource-item {
+            background: #424242;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 0.85em;
+        }
+        .resource-item h4 {
+            font-size: 1em !important;
+            margin-bottom: 4px !important;
+        }
+        .highlight {
+            color: #ff6b6b;
+            font-weight: bold;
+        }
+        
+        /* Ensure code blocks fit */
+        .reveal pre {
+            font-size: 0.6em !important;
+            line-height: 1.3 !important;
+            margin: 10px 0 !important;
+        }
+        .reveal code {
+            font-size: 0.8em !important;
+        }
+        
+        /* Make sure fragments don't cause overflow */
+        .reveal .fragment {
+            margin: 5px 0 !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="reveal">
+        <div class="slides">
+            
+            <!-- Slide 1: Title & Hook -->
+            <section>
+                <div class="center">
+                    <h1 style="font-size: 5em; color: #61dafb; text-shadow: 0 0 30px #61dafb; margin-bottom: 60px;">MCP</h1>
+                    <h2 style="color: #ffffff; font-size: 2.5em;">What does this stand for?</h2>
+                </div>
+                <aside class="notes">
+                    Start with audience interaction. Wait for answers from the audience.
+                    Let them guess - some might say "Model Context Protocol" but wait for other suggestions.
+                    Build suspense before revealing the Tron reference on the next slide.
+                </aside>
+            </section>
+
+            <!-- Slide 2: Master Control Program Reveal -->
+            <section>
+                <div class="center">
+                    <div style="display: flex; align-items: center; justify-content: center; margin: 40px 0;">
+                        <div style="flex: 1; text-align: center;">
+                            <!-- Actual MCP Image -->
+                            <div style="background: #000; padding: 20px; border-radius: 15px; border: 3px solid #ff4444; box-shadow: 0 0 20px #ff4444;">
+                                <img src="mcp_obey.jpg" 
+                                     alt="Master Control Program from TRON (1982)" 
+                                     style="max-width: 300px; max-height: 300px; border-radius: 10px; box-shadow: 0 0 15px rgba(255, 68, 68, 0.5);"
+                                     onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                                <!-- Fallback text if image doesn't load -->
+                                <div style="display: none; color: #ff4444; font-family: monospace; font-size: 2em; padding: 40px;">
+                                    [MCP Image]<br>
+                                    <span style="font-size: 0.6em;">mcp_obey.jpg</span>
+                                </div>
+                            </div>
+                            <p style="color: #ff4444; font-size: 0.9em; margin-top: 15px; font-style: italic;">
+                                The iconic MCP from TRON (1982)
+                            </p>
+                        </div>
+                        <div style="flex: 1; margin-left: 40px; text-align: center;">
+                            <h2 style="color: #ff6b6b; text-shadow: 0 0 10px #ff6b6b;">Master Control Program</h2>
+                            <h3 style="color: #61dafb;">Of course! 🎮</h3>
+                            <p style="color: #feca57; font-size: 1.1em; margin-top: 20px;">
+                                The malevolent AI from TRON (1982)
+                            </p>
+                            <p style="color: #888; font-size: 0.9em; font-style: italic; margin-top: 15px;">
+                                "I can run things 900 to 1200 times<br>better than any human"
+                            </p>
+                        </div>
+                    </div>
+                    <div class="fragment" style="margin-top: 30px;">
+                        <div class="timeline">
+                            <p style="font-style: italic; font-size: 1.1em;">
+                                💭 <strong>Personal note:</strong> At billiger.de, we also called our Shop-Management-Tool "MCP" 
+                                - so I always get into a nostalgic mood when seeing those 3 letters! 😄
+                            </p>
+                        </div>
+                    </div>
+                    <div class="fragment" style="margin-top: 25px;">
+                        <h3 style="color: #feca57;">But today we're talking about the <span class="highlight">Model Context Protocol</span></h3>
+                    </div>
+                </div>
+                <aside class="notes">
+                    Reveal the Tron reference with the actual MCP image from the 1982 film.
+                    The image shows the iconic red geometric design of the Master Control Program.
+                    Include the famous MCP quote about running things better than humans.
+                    Share the billiger.de personal story to build rapport.
+                    Then transition to the real topic: Model Context Protocol.
+                    This creates a fun, nostalgic opening that gets people engaged.
+                </aside>
+            </section>
+
+            <!-- Slide 3: The Problem -->
+            <section>
+                <h2 class="center">The Developer's Dilemma</h2>
+                <div class="problem-list center">
+                    <p>😫 Copy file contents → Paste into AI</p>
+                    <p>📋 Copy AI response → Paste back to editor</p>
+                    <p>🔄 Repeat 50 times per day</p>
+                    <p class="fragment highlight">"Is this what I'm paid to do?"</p>
+                </div>
+                <div class="fragment timeline">
+                    <h4>Sound familiar?</h4>
+                    <p>Every developer working with AI has felt this pain...</p>
+                </div>
+                <aside class="notes">
+                    Describe David Soria Parra's frustration at Anthropic.
+                    Ask audience: "How many of you have felt this pain?"
+                    Emphasize this is universal problem, not just Anthropic.
+                </aside>
+            </section>
+
+            <!-- Slide 4: Why MCP Is Worth Our Time -->
+            <section>
+                <h2 class="center">Why Trust MCP Is Worth Our Time?</h2>
+                
+                <div class="timeline" style="margin: 20px 0;">
+                    <h4>Reality: AI moves fast, life is finite, pick battles wisely</h4>
+                    <p style="font-style: italic; color: #feca57;">
+                        "I need to make sure something new isn't just a fad, but here to stay"
+                    </p>
+                </div>
+
+                <h3 class="center" style="color: #61dafb; margin: 20px 0;">The Creators</h3>
+
+                <div style="display: flex; gap: 30px; margin: 30px 0;">
+                    <!-- David Section -->
+                    <div style="flex: 1; background: #2d3748; padding: 20px; border-radius: 10px; border-left: 4px solid #61dafb;">
+                        <h4 style="color: #61dafb;">🔨 David Soria Parra</h4>
+                        <ul>
+                            <li>PHP Release Manager</li>
+                            <li>Mercurial core contributor</li>
+                            <li>10 years at Facebook</li>
+                            <li>Python MCP SDK author</li>
+                        </ul>
+                    </div>
+                    
+                    <!-- Justin Section -->
+                    <div style="flex: 1; background: #2d3748; padding: 20px; border-radius: 10px; border-left: 4px solid #ff6b6b;">
+                        <h4 style="color: #ff6b6b;">🍎 Justin Spahr-Summers</h4>
+                        <ul>
+                            <li>macOS/iOS expert</li>
+                            <li>Claude Desktop integration</li>
+                            <li>Developer tools veteran</li>
+                            <li>Quality engineering focus</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="getting-started">
+                    <p class="center" style="font-size: 1.1em;">
+                        <strong>I don't understand everything yet, but trust me:</strong><br>
+                        This is worth investigating.
+                    </p>
+                </div>
+                
+                <aside class="notes">
+                    Be honest about your own learning journey while providing trust indicators.
+                    The creators' backgrounds suggest this isn't just hype but solid engineering.
+                    Ask the audience to trust your judgment even though you're still learning.
+                    This vulnerability actually makes you more credible, not less.
+                </aside>
+            </section>
+
+            <!-- Slide 5: LSP Inspiration -->
+            <section>
+                <h2 class="center">The LSP Inspiration</h2>
+                <div class="before-after">
+                    <div class="before">
+                        <h4>BEFORE LSP</h4>
+                        <p>Editor A ←→ Language 1<br>
+                        Editor A ←→ Language 2<br>
+                        Editor B ←→ Language 1<br>
+                        Editor B ←→ Language 2<br>
+                        <strong>...n×m integrations</strong></p>
+                    </div>
+                    <div class="after">
+                        <h4>AFTER LSP</h4>
+                        <p>Editor A ←→ LSP ←→ Language 1<br>
+                        Editor B ←→ LSP ←→ Language 2<br>
+                        Editor C ←→ LSP ←→ Language 3<br>
+                        <strong>...n+m integrations</strong></p>
+                    </div>
+                </div>
+                <div class="center">
+                    <h3 class="highlight">MCP does the same for AI context!</h3>
+                </div>
+                <aside class="notes">
+                    Explain n×m vs n+m problem clearly.
+                    LSP revolutionized editor/language integration.
+                    MCP aims to do same for AI/context integration.
+                </aside>
+            </section>
+
+            <!-- Slide 6: Architecture -->
+            <section>
+                <h2 class="center">MCP Architecture</h2>
+                <div class="architecture-diagram center">
+                    <pre style="margin: 0; color: #61dafb;">
+┌─────────────────────┐
+│        HOST         │  ← AI Applications (not AI models!)
+│  ┌─────────────┐    │    (Claude Desktop, VS Code)
+│  │   CLIENT    │────┼──→ MCP SERVER ──→ (acts as client)
+│  └─────────────┘    │    (Your Python Code!)    ↓
+│  ┌─────────────┐    │                    Other MCP Server
+│  │   CLIENT    │────┼──→ ┌─────────────┐        ↑
+│  └─────────────┘    │    │ RESOURCES   │    Sampling
+└─────────────────────┘    │ TOOLS       │   (ask LLM)
+         ↑                 │ PROMPTS     │        │
+         └─────────────────└─────────────┘────────┘
+              Bidirectional connections
+                    </pre>
+                </div>
+                <div class="center">
+                    <p><strong>Key insights:</strong><br>
+                    • MCP extends AI applications, not AI models!<br>
+                    • Servers can also be clients to other servers<br>
+                    • <span style="color: #feca57;">Chaining enables complex agent workflows!</span> 🚀</p>
+                </div>
+                <aside class="notes">
+                    Based on podcast with David Soria Parra: servers can act as both server and client.
+                    An MCP server can expose capabilities upstream while consuming from downstream servers.
+                    Any server in the chain can use sampling to ask the original client's LLM for help.
+                    This enables arbitrarily long chains and complex agent workflows.
+                </aside>
+            </section>
+
+            <!-- Slide 7: Server Capabilities -->
+            <section>
+                <h2 class="center">What MCP Servers Provide</h2>
+                <div class="capabilities">
+                    <div class="capability">
+                        <div class="capability-icon">🗂️</div>
+                        <h4>RESOURCES</h4>
+                        <p><em>For applications to read</em></p>
+                        <ul style="font-size: 0.75em !important;">
+                            <li>Lists of things with URIs</li>
+                            <li>File contents, DB rows, API data</li>
+                            <li><strong>Application decides</strong> which to use</li>
+                            <li>Can build RAG systems on top</li>
+                        </ul>
+                    </div>
+                    <div class="capability">
+                        <div class="capability-icon">🔧</div>
+                        <h4>TOOLS</h4>
+                        <p><em>For AI models to execute</em></p>
+                        <ul style="font-size: 0.75em !important;">
+                            <li>Also called "function calling"</li>
+                            <li>Database queries, API calls</li>
+                            <li>Calculations, file operations</li>
+                            <li><strong>LLMs can invoke</strong> these directly</li>
+                        </ul>
+                    </div>
+                    <div class="capability">
+                        <div class="capability-icon">📝</div>
+                        <h4>PROMPTS</h4>
+                        <p><em>For human consumption</em></p>
+                        <ul style="font-size: 0.75em !important;">
+                            <li>Slash commands in editors</li>
+                            <li>Claude Code prompts (/search)</li>
+                            <li>Templated workflows</li>
+                            <li><strong>Humans trigger</strong> these manually</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline" style="margin-top: 20px;">
+                    <h4>🎯 Key Distinction</h4>
+                    <p><strong>Resources:</strong> Application chooses what to read | <strong>Tools:</strong> AI model chooses what to call | <strong>Prompts:</strong> Human chooses what to use</p>
+                </div>
+                <aside class="notes">
+                    Resources: Application-controlled data access. Great for building RAG systems.
+                    Tools: AI model can directly invoke these (function calling).
+                    Prompts: Human-triggered templates and workflows.
+                    Each serves a different actor in the system.
+                </aside>
+            </section>
+
+            <!-- Slide 8: Protocol & Transport -->
+            <section>
+                <h2 class="center">Simple, Powerful Protocol</h2>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; margin: 40px 0;">
+                    <div style="flex: 1; margin: 20px; min-width: 300px;">
+                        <h4>Transport Options:</h4>
+                        <ul>
+                            <li><strong>📱 stdio</strong> ← Most common (local servers)</li>
+                            <li><strong>🌐 HTTP</strong> ← Remote servers + streaming</li>
+                            <li><strong>🔮 Future</strong> ← Thrift, Protocol Buffers, etc.</li>
+                        </ul>
+                    </div>
+                    <div style="flex: 1; margin: 20px; min-width: 300px;">
+                        <h4>Protocol Details:</h4>
+                        <ul>
+                            <li><strong>JSON-RPC 2.0</strong> ← "Boring choice" (proven!)</li>
+                            <li><strong>Bidirectional</strong> ← Client ↔ Server</li>
+                            <li><strong>Stateful sessions</strong></li>
+                            <li><strong>Auth:</strong> OAuth 2.0 (evolving)</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="timeline">
+                    <h4>🔄 Design Philosophy</h4>
+                    <p><strong>JSON-RPC was chosen because it's boring!</strong> Transfer mechanism doesn't matter - reused proven solution from LSP. <strong>Bidirectional connections</strong> enable servers to call back to clients.</p>
+                </div>
+                <div class="timeline" style="background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);">
+                    <h4>🔗 Cool Feature: "Sampling"</h4>
+                    <p>Server can ask client's LLM for help without sharing API keys!<br>
+                    <strong>Enables chaining:</strong> Server A → Server B → Client's LLM</p>
+                </div>
+                <aside class="notes">
+                    stdio perfect for local Python scripts.
+                    HTTP for remote/cloud servers.
+                    JSON-RPC chosen for being "boring" and proven - borrowed from LSP.
+                    Bidirectional connections are key - servers can call back to clients.
+                    Sampling enables chaining without API key sharing.
+                    This architecture enables complex agent workflows.
+                </aside>
+            </section>
+
+            <!-- Slide 9: Python Implementation -->
+            <section>
+                <h2 class="center">Python Implementation</h2>
+                <pre><code class="python big-code"># pip install mcp
+
+from mcp import serve
+from mcp.server.stdio import stdio_server
+
+app = serve()
+
+@app.list_resources()
+async def list_resources():
+    return [Resource(uri="file://README.md", name="Project README")]
+
+@app.read_resource()  
+async def read_resource(uri: str):
+    with open(uri.replace("file://", "")) as f:
+        return f.read()
+
+@app.list_tools()
+async def list_tools():
+    return [Tool(name="word_count", description="Count words in text")]
+
+@app.call_tool()
+async def call_tool(name: str, arguments: dict):
+    if name == "word_count":
+        return {"count": len(arguments["text"].split())}
+
+if __name__ == "__main__":
+    stdio_server(app)
+</code></pre>
+                <div class="center">
+                    <p><strong>This is a complete, working MCP server!</strong> ✨</p>
+                </div>
+                <aside class="notes">
+                    Show how simple the SDK makes things.
+                    Decorators handle protocol complexity.
+                    You focus on business logic.
+                    This is a complete, working server!
+                </aside>
+            </section>
+
+            <!-- Slide 10: Integration -->
+            <section>
+                <h2 class="center">Integration with Claude Desktop</h2>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; margin: 40px 0;">
+                    <div style="flex: 1; margin: 20px; min-width: 400px;">
+                        <h4>1. Add to config:</h4>
+                        <pre><code class="json">{
+  "mcpServers": {
+    "my-server": {
+      "command": "python",
+      "args": ["my_mcp_server.py"]
+    }
+  }
+}</code></pre>
+                    </div>
+                    <div style="flex: 1; margin: 20px; min-width: 300px;">
+                        <h4>2. Simple steps:</h4>
+                        <ul style="font-size: 1.2em;">
+                            <li>✅ Restart Claude Desktop</li>
+                            <li>✅ See your resources/tools appear</li>
+                            <li>✅ AI can now access your local context!</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="center fragment">
+                    <h3 class="highlight">🎉 No more copy-paste hell! 🎉</h3>
+                </div>
+                <aside class="notes">
+                    Simple configuration gets you started.
+                    Works immediately after restart.
+                    AI can now seamlessly access your data.
+                </aside>
+            </section>
+
+            <!-- Slide 11: Real-World Examples -->
+            <section>
+                <h2 class="center">Growing MCP Ecosystem</h2>
+                <div class="resources-grid">
+                    <div class="resource-item">
+                        <h4>🗃️ File Systems</h4>
+                        <p>Local file access</p>
+                    </div>
+                    <div class="resource-item">
+                        <h4>📊 Databases</h4>
+                        <p>SQLite explorer</p>
+                    </div>
+                    <div class="resource-item">
+                        <h4>🐙 Git Integration</h4>
+                        <p>Repository history</p>
+                    </div>
+                    <div class="resource-item">
+                        <h4>💬 Chat Platforms</h4>
+                        <p>Slack, Discord</p>
+                    </div>
+                    <div class="resource-item">
+                        <h4>🌐 APIs</h4>
+                        <p>Weather, News</p>
+                    </div>
+                    <div class="resource-item">
+                        <h4>🔧 Dev Tools</h4>
+                        <p>Linting, Testing</p>
+                    </div>
+                    <div class="resource-item">
+                        <h4>📋 Task Management</h4>
+                        <p>GitHub Issues</p>
+                    </div>
+                    <div class="resource-item">
+                        <h4>📈 Analytics</h4>
+                        <p>Custom dashboards</p>
+                    </div>
+                    <div class="resource-item highlight">
+                        <h4>🚀 Your Idea Here?</h4>
+                        <p>What will you build?</p>
+                    </div>
+                </div>
+                <aside class="notes">
+                    Show variety of existing servers.
+                    Many written in Python.
+                    Community actively building.
+                    Plenty of opportunities for new servers.
+                </aside>
+            </section>
+
+            <!-- Slide 12: Getting Started -->
+            <section>
+                <h2 class="center">Your MCP Journey Starts Now</h2>
+                <div class="getting-started">
+                    <h4>✅ Step-by-Step Guide:</h4>
+                    <ul style="font-size: 1.2em; line-height: 1.8;">
+                        <li>Visit <strong>modelcontextprotocol.io</strong></li>
+                        <li>Read the Python SDK docs</li>
+                        <li>Clone example servers from GitHub</li>
+                        <li>Build your first server (start simple!)</li>
+                        <li>Share with the community</li>
+                    </ul>
+                </div>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; margin: 40px 0;">
+                    <div style="flex: 1; margin: 20px; min-width: 300px;">
+                        <h4>💡 Ideas to Try:</h4>
+                        <ul>
+                            <li>File system browser</li>
+                            <li>Database query tool</li>
+                            <li>API wrapper for your favorite service</li>
+                            <li>Custom workflow automation</li>
+                        </ul>
+                    </div>
+                    <div style="flex: 1; margin: 20px; min-width: 300px; text-align: center;">
+                        <h4>🤝 Join the Community</h4>
+                        <p>Plenty of room for innovation!</p>
+                        <p>Active Discord & GitHub discussions</p>
+                    </div>
+                </div>
+                <aside class="notes">
+                    Give concrete next steps.
+                    Emphasize starting simple.
+                    Community aspect important.
+                    Plenty of room for innovation.
+                </aside>
+            </section>
+
+            <!-- Slide 13: Q&A -->
+            <section>
+                <h2 class="center">Questions & Discussion</h2>
+                <div style="display: flex; justify-content: space-between; flex-wrap: wrap; margin: 40px 0;">
+                    <div style="flex: 1; margin: 20px; min-width: 300px;">
+                        <h4>🔗 Key Resources:</h4>
+                        <ul>
+                            <li><strong>modelcontextprotocol.io</strong></li>
+                            <li>github.com/modelcontextprotocol</li>
+                            <li>Python SDK documentation</li>
+                            <li>Community Discord</li>
+                        </ul>
+                    </div>
+                    <div style="flex: 1; margin: 20px; min-width: 300px;">
+                        <h4>🤔 Common Questions:</h4>
+                        <ul>
+                            <li>Security considerations?</li>
+                            <li>Performance at scale?</li>
+                            <li>Integration with other AI tools?</li>
+                            <li>Deployment best practices?</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="center">
+                    <h3 class="highlight">Let's discuss! 🗣️</h3>
+                    <p style="font-size: 1.2em; margin-top: 40px;">
+                        Thank you for your attention!<br>
+                        Time to build some amazing MCP servers! 🚀
+                    </p>
+                </div>
+                <aside class="notes">
+                    Open floor for questions.
+                    Be prepared for technical deep-dives.
+                    Encourage people to start building.
+                    Share contact info if appropriate.
+                </aside>
+            </section>
+
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/reveal.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/highlight/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/reveal.js/4.3.1/plugin/notes/notes.min.js"></script>
+    <script>
+        Reveal.initialize({
+            hash: true,
+            transition: 'slide',
+            transitionSpeed: 'default',
+            backgroundTransition: 'fade',
+            plugins: [ RevealHighlight, RevealNotes ],
+            // Force slides to fit in viewport
+            width: '100%',
+            height: '100%',
+            margin: 0.04,
+            minScale: 0.2,
+            maxScale: 2.0,
+            // Enable scrolling within slides
+            embedded: false,
+            touch: true,
+            loop: false,
+            rtl: false,
+            navigationMode: 'default',
+            shuffle: false,
+            fragments: true,
+            fragmentInURL: false,
+            overview: true,
+            center: false,
+            // This is the key setting
+            disableLayout: false
+        });
+    </script>
+</body>
+</html>
